@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hakan Aslan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f9f8f6;
+      --white: #ffffff;
+      --border: #e2e0db;
+      --accent: #2563eb;
+      --accent-light: #eff4ff;
+      --text: #1a1a1a;
+      --muted: #6b7280;
+      --nav-h: 58px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(249,248,246,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem;
+      z-index: 100;
+    }
+
+    .nav-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    nav ul { display: flex; gap: 1.8rem; list-style: none; }
+
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    nav a:hover { color: var(--text); }
+
+    /* SECTIONS */
+    section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: calc(var(--nav-h) + 5rem) 2rem 5rem;
+    }
+
+    section#home {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* HOME */
+    .home-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      margin-bottom: 1.4rem;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 7vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+
+    .home-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 1.4rem 0 2.4rem;
+      line-height: 1.75;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.65rem 1.4rem;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: #1d4ed8; }
+
+    /* SECTION HEADING */
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+      color: var(--text);
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* CARDS */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.4rem 1.6rem;
+    }
+
+    /* ABOUT GRID */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+    .full { grid-column: 1 / -1; }
+
+    .card-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .info-list { list-style: none; }
+    .info-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.32rem 0;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .info-list li:last-child { border-bottom: none; }
+    .info-list li .val { color: var(--muted); font-size: 0.85rem; text-align: right; }
+
+    /* TIMELINE */
+    .tl { padding-left: 1.2rem; border-left: 1px solid var(--border); }
+    .tl-item { position: relative; margin-bottom: 1.4rem; }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -1.38rem; top: 5px;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .tl-item strong { font-size: 0.92rem; display: block; }
+    .tl-item .tl-sub { font-size: 0.82rem; color: var(--muted); margin-top: 0.1rem; }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.1rem;
+    }
+
+    .project-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.3rem 1.5rem;
+      transition: box-shadow 0.15s;
+    }
+    .project-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+
+    .project-tech {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .project-card h3 { font-size: 0.97rem; font-weight: 600; margin-bottom: 0.4rem; }
+    .project-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    /* SKILLS */
+    .skills-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+    .skill-group-title {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
+      color: var(--muted); text-transform: uppercase; margin-bottom: 1rem;
+    }
+
+    .skill-row { margin-bottom: 0.9rem; }
+    .skill-label {
+      display: flex; justify-content: space-between;
+      font-size: 0.88rem; margin-bottom: 0.3rem;
+    }
+    .skill-label span { color: var(--muted); font-size: 0.8rem; }
+    .bar-bg { height: 3px; background: var(--border); border-radius: 2px; }
+    .bar-fg { height: 100%; border-radius: 2px; background: var(--accent); }
+
+    .lang-list { list-style: none; }
+    .lang-list li {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.38rem 0;
+      font-size: 0.88rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .lang-list li:last-child { border-bottom: none; }
+    .lang-badge {
+      font-size: 0.72rem; font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 0.1rem 0.45rem;
+      border-radius: 4px;
+    }
+
+    /* ── DOCUMENTS ── */
+    #documents { min-height: 100vh; }
+
+    .login-wrap {
+      max-width: 380px;
+      margin: 0 auto;
+    }
+
+    .login-wrap p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1.4rem;
+    }
+
+    .field { margin-bottom: 1rem; }
+    .field label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 500;
+      margin-bottom: 0.35rem;
+      color: var(--text);
+    }
+    .field input {
+      width: 100%;
+      padding: 0.6rem 0.85rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      background: var(--white);
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .field input:focus { border-color: var(--accent); }
+
+    .login-err {
+      display: none;
+      font-size: 0.82rem;
+      color: #dc2626;
+      margin-bottom: 0.8rem;
+    }
+
+    .docs-area { display: none; }
+
+    /* file list */
+    .file-list { list-style: none; margin-bottom: 1.5rem; }
+    .file-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 0.6rem;
+      font-size: 0.9rem;
+    }
+    .file-item .file-name { font-weight: 500; }
+    .file-item .file-size { font-size: 0.78rem; color: var(--muted); margin-left: 0.5rem; }
+    .file-item-left { display: flex; align-items: center; gap: 0.5rem; }
+    .file-icon { font-size: 1.1rem; }
+
+    .download-btn {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-light);
+      border: none;
+      border-radius: 5px;
+      padding: 0.3rem 0.8rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .download-btn:hover { background: #dbeafe; }
+
+    .delete-btn {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #dc2626;
+      background: #fef2f2;
+      border: none;
+      border-radius: 5px;
+      padding: 0.3rem 0.7rem;
+      cursor: pointer;
+      margin-left: 0.4rem;
+      transition: background 0.15s;
+    }
+    .delete-btn:hover { background: #fee2e2; }
+
+    /* upload zone */
+    .upload-zone {
+      border: 2px dashed var(--border);
+      border-radius: 10px;
+      padding: 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      background: var(--white);
+    }
+    .upload-zone:hover, .upload-zone.drag-over {
+      border-color: var(--accent);
+      background: var(--accent-light);
+    }
+    .upload-zone p { font-size: 0.88rem; color: var(--muted); margin-top: 0.4rem; }
+    .upload-zone strong { font-size: 0.95rem; display: block; margin-bottom: 0.2rem; }
+
+    #fileInput { display: none; }
+
+    .logout-link {
+      display: inline-block;
+      margin-top: 1.5rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+      text-decoration: underline;
+      background: none;
+      border: none;
+      font-family: inherit;
+    }
+    .logout-link:hover { color: var(--text); }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 640px) {
+      .about-grid, .skills-wrap { grid-template-columns: 1fr; }
+      nav ul { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-name">Hakan Aslan</div>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About me</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">ICT Skills</a></li>
+    <li><a href="#documents">Documents</a></li>
+  </ul>
+</nav>
+
+<!-- HOME -->
+<section id="home">
+  <p class="home-label">Praktikumsbewerber Informatik · Basel</p>
+  <h1>Hakan Aslan</h1>
+  <p class="home-sub">
+    Ich bin Schüler an der IMS Basel und suche ein Informatikpraktikum.
+    Mit Projekterfahrung in Python, Java, HTML/CSS/PHP und SQL freue ich mich darauf,
+    das Gelernte im echten Arbeitsumfeld einzusetzen.
+  </p>
+  <div>
+    <a href="#projects" class="btn btn-primary">Meine Projekte ansehen</a>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ABOUT -->
+<section id="about">
+  <h2>About me</h2>
+  <div class="about-grid">
+    <div class="card">
+      <p class="card-label">Persönliches</p>
+      <ul class="info-list">
+        <li>Geburtstag <span class="val">16.05.2009</span></li>
+        <li>Nationalität <span class="val">Schweiz</span></li>
+        <li>Wohnort <span class="val">Basel</span></li>
+        <li>E-Mail <span class="val">hakan.aslan@stud.edubs.ch</span></li>
+        <li>Telefon <span class="val">+41 78 678 76 77</span></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <p class="card-label">Ausbildung</p>
+      <div class="tl">
+        <div class="tl-item">
+          <strong>Informatikmittelschule (IMS)</strong>
+          <span class="tl-sub">2024 – heute · Basel</span>
+        </div>
+        <div class="tl-item">
+          <strong>Sekundarschule Sek De Wette</strong>
+          <span class="tl-sub">2021 – 2024 · Basel</span>
+        </div>
+        <div class="tl-item">
+          <strong>Primarschule Insel</strong>
+          <span class="tl-sub">2015 – 2021 · Basel</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card full">
+      <p class="card-label">Schnupperlehren</p>
+      <div class="tl">
+        <div class="tl-item">
+          <strong>Informatiker EFZ – Baloise Group</strong>
+          <span class="tl-sub">1 Tag</span>
+        </div>
+        <div class="tl-item">
+          <strong>Automobilfachmann – Emil Frey AG</strong>
+          <span class="tl-sub">1 Woche</span>
+        </div>
+        <div class="tl-item">
+          <strong>Elektroinstallateur EFZ – Etavis AG</strong>
+          <span class="tl-sub">1 Tag</span>
+        </div>
+        <div class="tl-item">
+          <strong>Polymechaniker EFZ – LBB Basel</strong>
+          <span class="tl-sub">1 Tag</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- PROJECTS -->
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <p class="project-tech">Java</p>
+      <h3>Hangman im Terminal</h3>
+      <p>Klassisches Wortratespiel, vollständig im Terminal spielbar. Logik, Schleifen und String-Verarbeitung in Java.</p>
+    </div>
+    <div class="project-card">
+      <p class="project-tech">HTML · CSS · PHP · MySQL</p>
+      <h3>Bücher-Antiquariat</h3>
+      <p>Webapplikation mit über 3.000 Büchern aus einer MySQL-Datenbank. Suche und Anzeige via PHP-Backend.</p>
+    </div>
+    <div class="project-card">
+      <p class="project-tech">HTML · CSS</p>
+      <h3>Fussballmannschaft-Webseite</h3>
+      <p>Webseite für eine Fussballmannschaft, erstellt zu Beginn der IMS im August 2024.</p>
+    </div>
+    <div class="project-card">
+      <p class="project-tech">HTML · CSS · JS</p>
+      <h3>Online-Bewerbungsprofil</h3>
+      <p>Diese Webseite — erstellt im Rahmen des IDAF IV an der IMS Basel.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- SKILLS -->
+<section id="skills">
+  <h2>ICT Skills</h2>
+  <div class="skills-wrap">
+    <div>
+      <p class="skill-group-title">Programmiersprachen</p>
+      <div class="skill-row">
+        <div class="skill-label">HTML / CSS <span>gut</span></div>
+        <div class="bar-bg"><div class="bar-fg" style="width:80%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label">Python <span>gut</span></div>
+        <div class="bar-bg"><div class="bar-fg" style="width:75%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label">PHP <span>grundlegend</span></div>
+        <div class="bar-bg"><div class="bar-fg" style="width:55%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label">SQL <span>grundlegend</span></div>
+        <div class="bar-bg"><div class="bar-fg" style="width:55%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label">Java <span>grundlegend</span></div>
+        <div class="bar-bg"><div class="bar-fg" style="width:50%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label">JavaScript <span>grundlegend</span></div>
+        <div class="bar-bg"><div class="bar-fg" style="width:45%"></div></div>
+      </div>
+
+      <p class="skill-group-title" style="margin-top:1.8rem">Tools</p>
+      <div class="skill-row">
+        <div class="skill-label">MS Office <span>gut</span></div>
+        <div class="bar-bg"><div class="bar-fg" style="width:80%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label">MySQL / Datenbanken <span>grundlegend</span></div>
+        <div class="bar-bg"><div class="bar-fg" style="width:55%"></div></div>
+      </div>
+    </div>
+
+    <div>
+      <p class="skill-group-title">Sprachen</p>
+      <ul class="lang-list">
+        <li>Deutsch <span class="lang-badge">Muttersprache</span></li>
+        <li>Türkisch <span class="lang-badge">Muttersprache</span></li>
+        <li>Englisch <span class="lang-badge">C1</span></li>
+        <li>Französisch <span class="lang-badge">B1</span></li>
+        <li>Italienisch <span class="lang-badge">A1</span></li>
+        <li>Russisch <span class="lang-badge">A1</span></li>
+      </ul>
+
+      <p class="skill-group-title" style="margin-top:1.8rem">Referenz</p>
+      <div class="card" style="padding:1rem">
+        <p style="font-size:0.9rem;font-weight:600;margin-bottom:0.3rem">Beatrice Duc</p>
+        <p style="font-size:0.82rem;color:var(--muted)">Informatiklehrerin, IMS Basel</p>
+        <p style="font-size:0.82rem;color:var(--muted)">beatrice.duc@edubs.ch</p>
+        <p style="font-size:0.82rem;color:var(--muted)">+41 78 756 03 03</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- DOCUMENTS -->
+<section id="documents">
+  <h2>Documents</h2>
+
+  <!-- LOGIN -->
+  <div class="login-wrap" id="loginBox">
+    <p>Dieser Bereich ist passwortgeschützt. Bitte melde dich an, um die Dokumente herunterzuladen.</p>
+    <div class="card">
+      <div class="field">
+        <label for="pwInput">Passwort</label>
+        <input type="password" id="pwInput" placeholder="Passwort eingeben" />
+      </div>
+      <p class="login-err" id="loginErr">Falsches Passwort. Bitte nochmal versuchen.</p>
+      <button class="btn btn-primary" onclick="doLogin()" style="width:100%">Anmelden</button>
+    </div>
+  </div>
+
+  <!-- DOCS AREA (hidden until login) -->
+  <div class="docs-area" id="docsArea">
+
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem">
+      <span id="roleBadge" style="font-size:0.78rem;font-weight:600;padding:0.25rem 0.75rem;border-radius:20px"></span>
+      <button class="logout-link" onclick="doLogout()">Abmelden</button>
+    </div>
+
+    <ul class="file-list" id="fileList"></ul>
+
+    <!-- Upload Zone — only for admin -->
+    <div id="uploadSection" style="display:none">
+      <div class="upload-zone" id="uploadZone">
+        <strong>Datei hochladen</strong>
+        <p>Datei hierher ziehen oder klicken zum Auswählen</p>
+      </div>
+      <input type="file" id="fileInput" multiple />
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  © 2026 Hakan Aslan · IMS Basel
+</footer>
+
+<script>
+  const PW_ADMIN   = 'admin2026';    // ← Admin-Passwort hier ändern
+  const PW_VISITOR = 'besucher123';  // ← Besucher-Passwort hier ändern
+
+  let currentRole = null;
+  let uploadedFiles = JSON.parse(localStorage.getItem('ha_docs') || '[]');
+
+  function doLogin() {
+    const val = document.getElementById('pwInput').value;
+    if (val === PW_ADMIN) {
+      currentRole = 'admin';
+      showDocs();
+    } else if (val === PW_VISITOR) {
+      currentRole = 'visitor';
+      showDocs();
+    } else {
+      document.getElementById('loginErr').style.display = 'block';
+    }
+  }
+
+  document.getElementById('pwInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doLogin();
+  });
+
+  function showDocs() {
+    document.getElementById('loginBox').style.display = 'none';
+    document.getElementById('loginErr').style.display = 'none';
+    document.getElementById('docsArea').style.display = 'block';
+
+    const badge = document.getElementById('roleBadge');
+    if (currentRole === 'admin') {
+      badge.textContent = '🔧 Admin';
+      badge.style.background = '#fef3c7';
+      badge.style.color = '#92400e';
+      document.getElementById('uploadSection').style.display = 'block';
+    } else {
+      badge.textContent = '👁 Besucher';
+      badge.style.background = '#eff4ff';
+      badge.style.color = '#1d4ed8';
+      document.getElementById('uploadSection').style.display = 'none';
+    }
+    renderFiles();
+  }
+
+  function doLogout() {
+    currentRole = null;
+    document.getElementById('loginBox').style.display = 'block';
+    document.getElementById('docsArea').style.display = 'none';
+    document.getElementById('pwInput').value = '';
+  }
+
+  function formatSize(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+
+  function fileIcon(name) {
+    const ext = name.split('.').pop().toLowerCase();
+    if (ext === 'pdf') return '📄';
+    if (['jpg','jpeg','png','gif','webp'].includes(ext)) return '🖼️';
+    if (['doc','docx'].includes(ext)) return '📝';
+    if (['xls','xlsx'].includes(ext)) return '📊';
+    return '📁';
+  }
+
+  function renderFiles() {
+    const list = document.getElementById('fileList');
+    list.innerHTML = '';
+    if (uploadedFiles.length === 0) {
+      list.innerHTML = '<li style="font-size:0.88rem;color:var(--muted);padding:0.5rem 0">Noch keine Dokumente hochgeladen.</li>';
+      return;
+    }
+    uploadedFiles.forEach((f, i) => {
+      const li = document.createElement('li');
+      li.className = 'file-item';
+      const deleteBtn = currentRole === 'admin'
+        ? `<button class="delete-btn" onclick="deleteFile(${i})">Löschen</button>`
+        : '';
+      li.innerHTML = `
+        <div class="file-item-left">
+          <span class="file-icon">${fileIcon(f.name)}</span>
+          <span class="file-name">${f.name}</span>
+          <span class="file-size">${formatSize(f.size)}</span>
+        </div>
+        <div>
+          <a class="download-btn" href="${f.data}" download="${f.name}">Herunterladen</a>
+          ${deleteBtn}
+        </div>
+      `;
+      list.appendChild(li);
+    });
+  }
+
+  function deleteFile(i) {
+    if (currentRole !== 'admin') return;
+    uploadedFiles.splice(i, 1);
+    localStorage.setItem('ha_docs', JSON.stringify(uploadedFiles));
+    renderFiles();
+  }
+
+  function handleFiles(files) {
+    if (currentRole !== 'admin') return;
+    const readers = Array.from(files).map(file => new Promise(resolve => {
+      const reader = new FileReader();
+      reader.onload = e => {
+        uploadedFiles.push({ name: file.name, size: file.size, data: e.target.result });
+        resolve();
+      };
+      reader.readAsDataURL(file);
+    }));
+    Promise.all(readers).then(() => {
+      localStorage.setItem('ha_docs', JSON.stringify(uploadedFiles));
+      renderFiles();
+    });
+  }
+
+  const zone = document.getElementById('uploadZone');
+  const input = document.getElementById('fileInput');
+  zone.addEventListener('click', () => input.click());
+  input.addEventListener('change', () => handleFiles(input.files));
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.classList.remove('drag-over');
+    handleFiles(e.dataTransfer.files);
+  });
+</script>
+
+</body>
+</html>
